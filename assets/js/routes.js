@@ -1,64 +1,53 @@
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+var path = require('path');
+var router = express.Router();
 
-var finalScore = [
-  {
-    "name": "Bob",
-    "photo": "http://www.halsteaddiving.com/wordpress/wp-content/uploads/2011/04/Bob.jpg",
-    "scores":[
-        3,
-        2,
-        2,
-        5,
-        1,
-        3,
-        4,
-        1,
-        1,
-        4
-      ],
-    "score" : "B"
-     }
-]
+//associating files with extentions
+router.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, "index.html"));
+});
 
-function(app){
-app.get("/api/friends", function(req, res) {
-  res.json(finalScore);
+router.get('/questions', function(req, res) {
+    res.sendFile(path.join(__dirname, "survey.html"));
 });
 
 
+//make router accessible to server
+module.exports = router;
 
-// ---------------------------------------------------------------------------
+//---------------------
+//
+var matchTable = require("./match.js")
+
+// Routes
+// We export this function to make it accessible to other files using require.
+
+module.exports = function(app){
+
+
+
+app.get("/api/friends", function(req, res) {
+  res.json(matchTable);
+});
+
+
 app.post("/api/friends", function(req, res) {
-finalScore.push(req.body);
+matchTable.push(req.body);
  
-var currentUserscore = req.body.score;
+var currentUserGrade = req.body.grade;
 
 var result = []
 
-	for (var i=0; i < finalScore.length; i++){
-		if(currentUserscore == finalScore[i].score){
-			result.push(finalScore[i])
+	for (var i=0; i < matchTable.length; i++){
+		if(currentUserGrade == matchTable[i].grade){
+			result.push(matchTable[i])
 		}
 	}
 
 	res.send(result[0])
 
-	});
-
-};
-//----------------------------------------------------------------------------
-// routing for HTML paths
-var path = require("path");
-
-
-module.exports = function(app){
-
-	// html routes
-	app.get("/survey", function(req, res) {
-	  res.sendFile(path.join(__dirname, "./questions.html"));
-	});
-
-	app.use("/index", function(req, res) {
-	  res.sendFile(path.join(__dirname, "./index.html"));
 	});
 
 };

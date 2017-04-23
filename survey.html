@@ -182,39 +182,14 @@
             </fieldset><br>
             <input type="submit" class="btn btn-primary" value="Summon Buddy" id="submit">
         </form>
+        <hr>
+        <footer class="footer">
+          <div class="container">
+                <p><a href="/api/friends">API Friends List</a>
+          </div>
+        </footer>
     </div>
 </div>
-<script type="text/javascript">
-    $("#submit").on("click", function(event){
-        event.preventDefault();
-
-            var userData = {
-                name: $("#name").val(),
-                scores: [$("#question01").val(), $("#question02").val(), $("#question03").val(), $("#question04").val(), $("#question05").val(), $("#question06").val(), $("#question07").val(), $("#question08").val(), $("#question09").val(), $("#question10").val(), ]
-            }
-            var  score= 0;
-        var userGrade = "";
-        // Goes through all choices and tallies total score
-        for (var i = 0; i < userData.scores.length; i++) {
-            score += parseInt(userData.scores[i]);
-        };
-       // Assigns a grade to be passed 
-        if(score >= 10 && score <=20) {
-            grade = "A"
-            userData["grade"] = grade;
-        } else if (score >= 21 && score <= 30) {
-            grade = "B";
-            userData["grade"] = grade;
-        } else if (score >= 31 && score <= 40) {
-            grade = "C";
-            userData["grade"] = grade;
-        } else {
-            grade = "D";
-            userData["grade"] = grade;
-        };
-
-
-
 </script>
 </body>
 </html>
