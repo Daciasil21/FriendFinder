@@ -1,0 +1,25 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "json package",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Daciasil21/FriendFinder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Daciasil21/FriendFinder/issues"
+  },
+  "homepage": "https://github.com/Daciasil21/FriendFinder#readme"
+}

@@ -6,11 +6,11 @@ var router = express.Router();
 
 //associating files with extentions
 router.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
+    res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 router.get('/questions', function(req, res) {
-    res.sendFile(path.join(__dirname, "survey.html"));
+    res.sendFile(path.join(__dirname, "../public/survey.html"));
 });
 
 
@@ -19,7 +19,7 @@ module.exports = router;
 
 //---------------------
 //
-var matchTable = require("./match.js")
+var matchTable = require("../data/match.js")
 
 // Routes
 // We export this function to make it accessible to other files using require.
@@ -28,12 +28,12 @@ module.exports = function(app){
 
 
 
-app.get("/api/friends", function(req, res) {
+router.get("/api/friends", function(req, res) {
   res.json(matchTable);
 });
 
 
-app.post("/api/friends", function(req, res) {
+router.post("/api/friends", function(req, res) {
 matchTable.push(req.body);
  
 var currentUserGrade = req.body.grade;

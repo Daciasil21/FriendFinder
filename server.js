@@ -3,7 +3,7 @@ var bodyParser = require("body-parser");
 var path = require("path");
 var app = express();
 var PORT = 9001;
-
+var matchTable = require("./app/assets/data/match.js")
 //bodyParser ~ to parse the body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -12,14 +12,18 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 
 //associating files
+app.use(express.static(path.join(__dirname, 'app/assets')))
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
+    res.sendFile(path.join(__dirname, "app/assets/public/index.html"));
 });
 
 app.get('/questions', function(req, res) {
-    res.sendFile(path.join(__dirname, "survey.html"));
+    res.sendFile(path.join(__dirname, "app/assets/public/survey.html"));
 });
 
+app.get("/api/friends", function(req, res) {
+  res.json(matchTable);
+});
 
 
 
