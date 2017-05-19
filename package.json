@@ -21,5 +21,7 @@
   "bugs": {
     "url": "https://github.com/Daciasil21/FriendFinder/issues"
   },
-  "homepage": "https://github.com/Daciasil21/FriendFinder#readme"
+  "engines": {
+      "node": "4.1.1"
+  }
 }
